@@ -1,0 +1,116 @@
+# =========================
+# 操作系统产生的垃圾文件
+# =========================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# 其他系统文件
+*.swp
+*.swo
+
+# =========================
+# 依赖目录
+# =========================
+node_modules/
+jspm_packages/
+bower_components/
+
+# pnpm / yarn 生成的
+.pnp/
+.pnp.js
+.yarn/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# =========================
+# 构建产物 / 打包输出
+# =========================
+dist/
+build/
+out/
+coverage/
+.tmp/
+.temp/
+.cache/
+.next/
+.nuxt/
+storybook-static/
+.eslintcache
+
+# Vite / Webpack 缓存
+node_modules/.cache/
+.vite/
+
+# TypeScript 编译输出
+lib/
+esm/
+cjs/
+types/
+*.tsbuildinfo
+
+# =========================
+# 日志 & 调试
+# =========================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# =========================
+# 环境配置 / 私密信息
+# =========================
+.env
+.env.*.local
+*.local
+*.secret
+*.key
+
+# =========================
+# IDE / 编辑器配置
+# =========================
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# WebStorm / IDEA
+.idea/
+*.iml
+
+# 其他编辑器
+*.sublime-project
+*.sublime-workspace
+
+# =========================
+# 图片/设计工具缓存
+# =========================
+*.psd
+*.ai
+*.sketch
+
+# =========================
+# Electron 项目特别注意
+# =========================
+# 不要把打包好的应用、本地下载的二进制提交上去
+release/
+dist-electron/
+*.asar
+
+# =========================
+# 数据库文件
+# =========================
+*.db

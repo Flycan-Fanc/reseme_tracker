@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>简历投递记录工具</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="auth-screen" class="login-container">
+    <h1>简历投递记录工具</h1>
+
+    <div id="login-box" class="auth-box">
+        <h2>用户登录</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">用户名:</label>
+                <input type="text" id="username" value="admin" required>
+            </div>
+            <div class="form-group">
+                <label for="password">密码:</label>
+                <input type="password" id="password" value="123456" required>
+            </div>
+            <p id="login-error" class="error-message"></p>
+            <button type="submit">🔑 登录</button>
+        </form>
+        <p class="auth-switch">还没有账号？<a href="#" id="show-register">立即注册</a></p>
+    </div>
+
+    <div id="register-box" class="auth-box" style="display: none;">
+        <h2>用户注册</h2>
+        <form id="register-form">
+            <div class="form-group">
+                <label for="reg-username">新用户名*:</label>
+                <input type="text" id="reg-username" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-password">密码*:</label>
+                <input type="password" id="reg-password" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-confirm-password">确认密码*:</label>
+                <input type="password" id="reg-confirm-password" required>
+            </div>
+            <p id="register-error" class="error-message"></p>
+            <button type="submit">📝 注册</button>
+        </form>
+        <p class="auth-switch">已有账号？<a href="#" id="show-login">返回登录</a></p>
+    </div>
+
+    <p class="login-hint">默认用户/密码: admin/123456</p>
+</div>
+
+<div id="main-app" class="container" style="display: none;">
+    <header>
+        <h1>📊 简历投递记录 <span id="welcome-message"></span></h1>
+        <button id="logout-btn" class="logout-btn">🚪 退出登录</button>
+    </header>
+
+    <div class="form-section">
+        <h2>新增投递记录</h2>
+        <form id="record-form">
+            <div class="form-group">
+                <label for="submission-time">投递时间*:</label>
+                <input type="datetime-local" id="submission-time" required>
+            </div>
+            <div class="form-group">
+                <label for="company">投递公司*:</label>
+                <input type="text" id="company" required>
+            </div>
+            <div class="form-group">
+                <label for="status">投递状态*:</label>
+                <select id="status" required>
+                    <option value="未回复">未回复</option>
+                    <option value="拒绝简历">拒绝简历</option>
+                    <option value="流程中">流程中</option>
+                    <option value="通过第1次面试">通过第1次面试</option>
+                    <option value="通过第2次面试">通过第2次面试</option>
+                    <option value="收到offer">收到offer</option>
+                    <option value="流程终止">流程终止</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="interview-details">面试记录:</label>
+                <textarea id="interview-details" placeholder="第几次面试、面试时间、面试结果"></textarea>
+            </div>
+            <div class="form-group optional-group">
+                <label for="business">公司主要业务 (选填):</label>
+                <input type="text" id="business">
+            </div>
+            <div class="form-group optional-group">
+                <label for="address">公司地址 (选填):</label>
+                <input type="text" id="address">
+            </div>
+            <div class="form-group optional-group">
+                <label for="benefits">福利待遇 (选填):</label>
+                <input type="text" id="benefits">
+            </div>
+            <button type="submit">💾 提交记录</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="records-section">
+        <h2>所有投递记录</h2>
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>投递时间</th>
+                <th>投递公司</th>
+                <th>投递状态</th>
+                <th>面试记录</th>
+                <th class="action-col">操作</th>
+                <th>公司主要业务</th>
+                <th>公司地址</th>
+                <th>福利待遇</th>
+            </tr>
+            </thead>
+            <tbody id="records-table-body">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="edit-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>编辑投递记录 <span id="edit-record-id"></span></h2>
+        <form id="edit-form">
+            <input type="hidden" id="edit-id">
+            <div class="form-group">
+                <label for="edit-submission-time">投递时间*:</label>
+                <input type="datetime-local" id="edit-submission-time" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-company">投递公司*:</label>
+                <input type="text" id="edit-company" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-status">投递状态*:</label>
+                <select id="edit-status" required>
+                    <option value="未回复">未回复</option>
+                    <option value="拒绝简历">拒绝简历</option>
+                    <option value="流程中">流程中</option>
+                    <option value="通过第1次面试">通过第1次面试</option>
+                    <option value="通过第2次面试">通过第2次面试</option>
+                    <option value="收到offer">收到offer</option>
+                    <option value="流程终止">流程终止</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="edit-interview-details">面试记录:</label>
+                <textarea id="edit-interview-details" placeholder="第几次面试、面试时间、面试结果"></textarea>
+            </div>
+            <div class="form-group optional-group">
+                <label for="edit-business">公司主要业务 (选填):</label>
+                <input type="text" id="edit-business">
+            </div>
+            <div class="form-group optional-group">
+                <label for="edit-address">公司地址 (选填):</label>
+                <input type="text" id="edit-address">
+            </div>
+            <div class="form-group optional-group">
+                <label for="edit-benefits">福利待遇 (选填):</label>
+                <input type="text" id="edit-benefits">
+            </div>
+            <button type="submit">✏️ 保存修改</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+    require('./renderer.js');
+</script>

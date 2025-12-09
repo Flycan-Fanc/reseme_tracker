@@ -1,0 +1,23 @@
+{
+  "name": "resume-tracker",
+  "version": "1.0.0",
+  "description": "A resume application tracker.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-win": "electron-packager . resume-tracker --overwrite --platform=win32 --arch=x64 --icon=icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Resume Tracker\""
+  },
+  "keywords": [
+    "Electron",
+    "SQLite"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^28.2.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "electron-packager": "^17.1.2"
+  }
+}
